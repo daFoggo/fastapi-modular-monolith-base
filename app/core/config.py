@@ -23,8 +23,8 @@ def _env_files() -> list[str]:
 
 
 class Settings(BaseSettings):
-    APP_NAME: str = "FastAPI Auth Telegram Base"
-    PROJECT_NAME: str = "anno-bot-be"
+    APP_NAME: str = "FastAPI Base"
+    PROJECT_NAME: str = "fastapi-base"
     ENV: Environment = Environment.DEV
     API_V1_STR: str = "/api/v1"
     DATABASE_URL: str = "sqlite+pysqlite:///./app.db"
@@ -37,23 +37,10 @@ class Settings(BaseSettings):
     BACKEND_CORS_ORIGINS: list[str] = Field(default_factory=lambda: ["*"])
     FRONTEND_URL: str = "http://localhost:3000"
 
-    TELEGRAM_BOT_TOKEN: str | None = None
-    TELEGRAM_BOT_USERNAME: str | None = None
-    TELEGRAM_BOT_API_BASE_URL: str = "https://api.telegram.org"
-    TELEGRAM_AUTH_MAX_AGE_SECONDS: int = 60 * 60 * 24
-    TELEGRAM_LINK_TOKEN_EXPIRE_MINUTES: int = 10
-    TELEGRAM_WEBHOOK_SECRET_TOKEN: str | None = None
-    TELEGRAM_LOGIN_CLIENT_ID: str | None = None
-    TELEGRAM_LOGIN_CLIENT_SECRET: str | None = None
-    TELEGRAM_OIDC_ISSUER: str = "https://oauth.telegram.org"
-    TELEGRAM_OIDC_JWKS_URL: str = "https://oauth.telegram.org/.well-known/jwks.json"
-    TELEGRAM_OIDC_TOKEN_URL: str = "https://oauth.telegram.org/token"
-    TELEGRAM_OIDC_CLOCK_SKEW_SECONDS: int = 60
-
     OPENROUTER_API_KEY: str | None = None
     OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"
     OPENROUTER_MODEL: str = "openai/gpt-4o-mini"
-    OPIK_PROJECT_NAME: str = "anno_bot"
+    OPIK_PROJECT_NAME: str = "fastapi_base"
 
     model_config = SettingsConfigDict(
         env_file=_env_files(),

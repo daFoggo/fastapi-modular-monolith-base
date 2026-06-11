@@ -46,7 +46,7 @@ Use this flow when adding or refactoring backend features.
 Create migration:
 
 ```bash
-docker exec anno-bot-be-api alembic revision --autogenerate -m "Describe change"
+docker compose exec api alembic revision --autogenerate -m "Describe change"
 ```
 
 Review the generated file before keeping it:
@@ -59,5 +59,5 @@ Review the generated file before keeping it:
 Apply migration:
 
 ```bash
-docker exec anno-bot-be-api alembic upgrade head
+docker compose exec api alembic upgrade head
 ```

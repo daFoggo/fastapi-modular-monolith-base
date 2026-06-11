@@ -1,4 +1,4 @@
-# FastAPI Modular Monolith Base Agent Instructions
+# FastAPI Base Agent Instructions
 
 These instructions apply to the whole backend repository.
 

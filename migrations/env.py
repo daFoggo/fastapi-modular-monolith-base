@@ -3,7 +3,6 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 
-import app.modules.telegram
 import app.modules.users  # noqa: F401
 from app.common import BaseModel
 from app.core.config import settings

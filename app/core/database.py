@@ -8,11 +8,7 @@ from sqlalchemy.pool import StaticPool
 
 from app.common import BaseModel
 
-MODEL_MODULES = (
-    "app.modules.users.models.user",
-    "app.modules.telegram.models.telegram_account",
-    "app.modules.telegram.models.telegram_link_session",
-)
+MODEL_MODULES = ("app.modules.users.models.user",)
 
 
 class Database:

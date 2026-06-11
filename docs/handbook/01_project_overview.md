@@ -1,9 +1,8 @@
 # Project Overview
 
-FastAPI Modular Monolith Base is a reusable backend base. It intentionally
-keeps only auth, users, Telegram connection, OpenRouter access, Opik tracing,
-database infrastructure, common repository primitives, common schemas, and
-migrations.
+FastAPI Base is a reusable modular-monolith backend. It intentionally keeps
+only auth, users, OpenRouter access, Opik tracing, database infrastructure,
+common repository primitives, common schemas, and migrations.
 
 ## Runtime
 
@@ -28,23 +27,21 @@ Important local values:
 
 ```env
 ENV=dev
-DATABASE_URL=postgresql://user:password@db:5432/fastapi_modular_monolith_base
+APP_NAME=FastAPI Base
+PROJECT_NAME=fastapi-base
+DATABASE_URL=postgresql+psycopg://postgres:postgres@db:5432/fastapi_base
 SECRET_KEY=...
 FRONTEND_URL=http://localhost:3000
 OPENROUTER_API_KEY=...
 OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
 OPENROUTER_MODEL=openai/gpt-4o-mini
-OPIK_PROJECT_NAME=anno_bot
-TELEGRAM_BOT_TOKEN=...
-TELEGRAM_BOT_USERNAME=...
+OPIK_PROJECT_NAME=fastapi_base
 ```
 
 ## API Surface
 
 - Email signup, signin, and JWT refresh under `/api/v1/auth`.
-- Telegram login at `/api/v1/auth/telegram`.
 - Current-user profile under `/api/v1/users`.
-- Telegram linking and webhook management under `/api/v1/telegram`.
 
 ## Local Development
 
@@ -52,7 +49,7 @@ Docker path:
 
 ```bash
 docker compose up -d --build
-docker exec anno-bot-be-api alembic upgrade head
+docker compose exec api alembic upgrade head
 ```
 
 Local app process:
@@ -65,5 +62,5 @@ uv run uvicorn app.main:app --reload --port 8000 --reload-dir app --reload-dir m
 Opik tracing:
 
 ```bash
-uv run opik endpoint --project "anno_bot" -- uv run uvicorn app.main:app --port 8000 --reload --reload-dir app --reload-dir migrations
+uv run opik endpoint --project "fastapi_base" -- uv run uvicorn app.main:app --port 8000 --reload --reload-dir app --reload-dir migrations
 ```

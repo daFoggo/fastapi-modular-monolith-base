@@ -1,9 +1,11 @@
+name: fastapi-base
+
 services:
   api:
     build:
       context: .
       dockerfile: ./app/Dockerfile
-    container_name: anno-bot-be-api
+    container_name: fastapi-base-api
     env_file:
       - ./.env
     ports:
@@ -18,14 +20,14 @@ services:
     networks:
       - default
   db:
-    image: timescale/timescaledb:latest-pg15
-    container_name: anno-bot-be-db
+    image: postgres:15
+    container_name: fastapi-base-db
     env_file:
       - ./.env
     ports:
       - "5433:5432"
     volumes:
-      - anno_bot_be_data:/var/lib/postgresql/data
+      - fastapi_base_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 10s
@@ -34,4 +36,4 @@ services:
       start_period: 30s
 
 volumes:
-  anno_bot_be_data:
+  fastapi_base_data:

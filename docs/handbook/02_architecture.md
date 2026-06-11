@@ -128,8 +128,3 @@ __all__ = ["CurrentUser", "UserService", "UserProfile", "UserInfo"]
 - `auth` owns password authentication, JWT issuance, refresh, and auth
   dependencies.
 - `users` owns the user model and profile persistence.
-- `telegram` owns Telegram identities, login verification, linking, Bot API
-  access, and webhook behavior.
-
-Telegram communicates with auth and users through their public services and
-DTOs. It must not import their repositories or ORM models.

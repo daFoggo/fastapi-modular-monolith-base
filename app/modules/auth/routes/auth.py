@@ -1,12 +1,6 @@
 from fastapi import APIRouter, Depends
 
 from app.common import ResponseSchema
-from app.modules.telegram import (
-    TelegramAuthService,
-    TelegramLoginCommand,
-    TelegramLoginRequest,
-    get_telegram_auth_service,
-)
 from app.modules.users import UserInfo
 
 from ..dependencies import get_auth_service
@@ -73,29 +67,4 @@ def refresh_token(
             refresh_expiration=result.refresh_expiration,
         ),
         message="Token refreshed successfully",
-    )
-
-
-@router.post("/telegram", response_model=ResponseSchema[SignInResponse])
-def telegram_sign_in(
-    payload: TelegramLoginRequest,
-    service: TelegramAuthService = Depends(get_telegram_auth_service),
-):
-    result = service.sign_in(
-        TelegramLoginCommand(
-            payload={
-                key: str(value)
-                for key, value in payload.model_dump(exclude_none=True).items()
-            }
-        )
-    )
-    return ResponseSchema(
-        data=SignInResponse(
-            access_token=result.access_token,
-            expiration=result.expiration,
-            refresh_token=result.refresh_token,
-            refresh_expiration=result.refresh_expiration,
-            user_info=UserInfo.model_validate(result.user_info),
-        ),
-        message="Telegram login successful",
     )

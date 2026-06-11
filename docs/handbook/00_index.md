@@ -1,6 +1,6 @@
 # Backend Handbook
 
-This handbook is the source of truth for FastAPI Modular Monolith Base.
+This handbook is the source of truth for FastAPI Base.
 
 ## Reading Order
 
